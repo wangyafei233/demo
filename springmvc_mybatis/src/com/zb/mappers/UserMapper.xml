@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace的内容可以随意写 -->
+<mapper namespace="com.zb.mappers.UserMapper">
+
+    <!-- user在sqlmap-config.xml进行别名 -->
+    <resultMap type="user" id="userResult">
+        <result column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="sex" property="sex" />
+    </resultMap>
+
+    <!-- 取得插入数据后的id -->
+    <!-- 方式1 -->
+    <!-- <insert id="save"> insert into t_user(user_name,user_birthday,user_salary) 
+        values(#{name},#{birthday},#{salary}) <selectKey keyProperty="id" resultType="int"> 
+        select last_insert_id() as id </selectKey> </insert> -->
+
+    <!-- 方式2 -->
+    <!-- <insert id="save" keyColumn="user_id" keyProperty="id" useGeneratedKeys="true"> 
+        insert into t_user(user_name,user_birthday,user_salary) values(#{name},#{birthday},#{salary}) 
+        </insert> -->
+    <!-- <update id="update"> update t_user set user_name = #{name}, user_birthday 
+        = #{birthday}, user_salary = #{salary} where user_id = #{id} </update> <delete 
+        id="delete"> delete from t_user where user_id = #{id} </delete> <select id="findById" 
+        resultMap="userResult"> select * from t_user where user_id = #{id} </select> -->
+
+    <select id="findAll" resultMap="userResult">
+        select * from users
+    </select>
+
+</mapper>
